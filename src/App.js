@@ -16,15 +16,29 @@ const useStyles = makeStyles((theme) =>({
   },
   title:{
     flexGrow:1
+  },
+  mainFeaturesPost:{
+    position: "relative",
+    color: theme.palette.common.white,
+    marginBottom: theme.spacing(4),
+    backgroundSize:"cover",
+    backgroundRepeat:"no-repeat",
+    backgroundPosition: "center",
+    padding: theme.spacing(20)
+  },
+  mainFeaturesPostContent:{
+    position: "relative",
+    padding: theme.spacing(34)
   }
 }))
+
 
 function App(){
   const classes = useStyles();
 
   return(
     <>
-    <AppBar position="fixed">
+    <AppBar position="static" style={{backgroundColor:"#A4C8EC", background:"rgba(164, 200, 236, 0.75)" }}>
       <Container fixed>
         <Toolbar>
             <MiscellaneousServicesIcon fontSize='large'/>
@@ -41,21 +55,44 @@ function App(){
     </AppBar>
     
     <main>
-      <Paper className={classes.mainFeaturesPost} style={{backgroundImage: 'url(https://miro.medium.com/max/1200/0*rF85nhzEmjrtjoqX.png)'}}>
-        <Container fixed>
-          <Grid Container>
-            <Grid item md={6}>
-              <div className={classes.mainFeaturesPostContent}>
-                <Button variant='contained' color="4c7bd9">
-                  opa
+
+      <Paper className={classes.mainFeaturesPost} style={{backgroundImage: "url(https://tradeforexblog.com/images/iqcent/1624320455263/original/how-to-contact-iqcent-support.jpg)"}}>
+      <Container maxWidth="md">
+        <Grid container spacing={10}>
+          <Grid item xs={12} sm={6} md={4}>
+              <Button variant='contained' style={{ width: "230px", height: "90px", backgroundColor:"#A4C8EC", background:"rgba(164, 200, 236, 0.75)" }}>
+                  Проблема с рабочим местом
                 </Button>
-              </div>
-            </Grid>
           </Grid>
-        </Container>
+          <Grid item xs={12} sm={6} md={4}>
+              <Button variant='contained' color="4c7bd9" style={{ width: "230px", height: "90px", backgroundColor:"#A4C8EC", background:"rgba(164, 200, 236, 0.75)" }}>
+                  Проблема с настроением
+                </Button>
+          </Grid>
+          <Grid item xs={12} sm={6} md={4}>
+              <Button variant='contained' color="4c7bd9" style={{ width: "230px", height: "90px", backgroundColor:"#A4C8EC", background:"rgba(164, 200, 236, 0.75)" }}>
+                  Проблема с принтером
+                </Button>
+          </Grid>
+          <Grid item xs={12} sm={6} md={4}>
+              <Button variant='contained' color="4c7bd9" style={{ width: "230px", height: "90px", backgroundColor:"#A4C8EC", background:"rgba(164, 200, 236, 0.75)" }}>
+                  Настройка удаленного доступа
+                </Button>
+          </Grid>
+          <Grid item xs={12} sm={6} md={4}>
+              <Button variant='contained' color="4c7bd9" style={{ width: "230px", height: "90px", backgroundColor:"#A4C8EC", background:"rgba(164, 200, 236, 0.75)" }}>
+                  Проблема с программой
+                </Button>
+          </Grid>
+          <Grid item xs={12} sm={6} md={4}>
+              <Button variant='contained' color="4c7bd9" style={{ width: "230px", height: "90px", backgroundColor:"#A4C8EC", background:"rgba(164, 200, 236, 0.75)" }}>
+                  Другое
+                </Button>
+          </Grid>
+        </Grid>
+      </Container>
       </Paper>
     </main>
-
     </>
     );
 }
