@@ -3,8 +3,11 @@
     right: -800px;
 }
 
-.background{
-  background-image: "https://miro.medium.com/max/1200/0*rF85nhzEmjrtjoqX.png";
+.Button{
+  width: "230px"; 
+  height: "90px"; 
+  background-color:"#A4C8EC";
+  background:"rgba(164, 200, 236, 0.75)";
 }
 
 .App-logo {
