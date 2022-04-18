@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) =>({
     backgroundSize:"cover",
     backgroundRepeat:"no-repeat",
     backgroundPosition: "center",
-    padding: theme.spacing(20)
+    padding: theme.spacing(24)
   },
   mainFeaturesPostContent:{
     position: "relative",
@@ -39,17 +39,16 @@ function App(){
     <>
 
     <AppBar position="static" style={{backgroundColor:"#A4C8EC", background:"rgba(164, 200, 236, 0.75)" }}>
-      <Container fixed>
+    <Container fixed>
         <Toolbar>
             <MiscellaneousServicesIcon fontSize='large' style={{color: "black"}}/>
-          <Box mr={3}>
-            <Button color="4c7bd9" variant='contained'>Каталог</Button>
-          </Box>
-          <Button color="inherit" variant='outlined' style={{color: "black"}}>Мои заявки</Button>
-          <IconButton edge="start" color="inherit" aria-label='menu' className='App'>
-            <PersonIcon fontSize='large' style={{color: "black"}}/>
-          </IconButton>
-
+            <Button color="inherit" variant='contained' style={{marginLeft:"10px", marginRight:"10px", color: "black"}}>Каталог</Button>
+            <Button color="inherit" variant='outlined' style={{marginLeft:"10px", marginRight:"10px",color: "black"}}>Мои заявки</Button>
+            <Button color="inherit" variant='outlined' style={{marginLeft:"10px", marginRight:"10px", color: "black"}}>Биржа заявок</Button>
+            <Button color="inherit" variant='outlined' style={{marginLeft:"10px", marginRight:"10px", color: "black"}}>Выполняемые заявки</Button>      
+            <IconButton edge="start" color="inherit" aria-label='menu' style={{color: "black", marginLeft:"375px"}}>
+              <PersonIcon fontSize='large'/>
+            </IconButton>
         </Toolbar>
       </Container>
     </AppBar>

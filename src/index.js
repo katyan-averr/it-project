@@ -4,11 +4,16 @@ import './index.css';
 import App from './App';
 import MyApplications from './MyApplications';
 import CreateApplications from './CreateApplications';
+import AppInExchange from './AppInExchange';
+import AppExchange from './AppExchange';
+import AppInProgress from './AppInProgress';
+import Authorization from './Authorization';
+import MyProfile from './MyProfile';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <MyProfile />
   </React.StrictMode>,
   document.getElementById('root')
 );

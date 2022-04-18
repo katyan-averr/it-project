@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) =>({
     backgroundSize:"cover",
     backgroundRepeat:"no-repeat",
     backgroundPosition: "center",
-    padding: theme.spacing(35)
+    padding: theme.spacing(34)
   },
   mainFeaturesPostContent:{
     position: "relative",
@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) =>({
 }))
 
 
-function MyApplications(){
+function AppInProgress(){
   const classes = useStyles();
 
   const [status, setStatus] = React.useState('');
@@ -54,9 +54,9 @@ function MyApplications(){
         <Toolbar>
             <MiscellaneousServicesIcon fontSize='large' style={{color: "black"}}/>
             <Button color="inherit" variant='outlined' style={{marginLeft:"10px", marginRight:"10px", color: "black"}}>Каталог</Button>
-            <Button color="inherit" variant='contained' style={{marginLeft:"10px", marginRight:"10px",color: "black"}}>Мои заявки</Button>
+            <Button color="inherit" variant='outlined' style={{marginLeft:"10px", marginRight:"10px",color: "black"}}>Мои заявки</Button>
             <Button color="inherit" variant='outlined' style={{marginLeft:"10px", marginRight:"10px", color: "black"}}>Биржа заявок</Button>
-            <Button color="inherit" variant='outlined' style={{marginLeft:"10px", marginRight:"10px", color: "black"}}>Выполняемые заявки</Button>      
+            <Button color="inherit" variant='contained' style={{marginLeft:"10px", marginRight:"10px", color: "black"}}>Выполняемые заявки</Button>      
             <IconButton edge="start" color="inherit" aria-label='menu' style={{color: "black", marginLeft:"375px"}}>
               <PersonIcon fontSize='large'/>
             </IconButton>
@@ -68,7 +68,7 @@ function MyApplications(){
 
       <Paper className={classes.mainFeaturesPost} style={{backgroundImage: "url(https://tradeforexblog.com/images/iqcent/1624320455263/original/how-to-contact-iqcent-support.jpg)"}}>
       <Container maxWidth="md" style={{position: "relative", top: "-230px", backgroundColor:"rgba(164, 200, 236, 0.75)"}}>
-        <Typography style={{color: "black", fontSize:"xx-large"}}>Мои заявки</Typography>
+        <Typography style={{color: "black", fontSize:"xx-large"}}>Выполняемые заявки</Typography>
         <label>Статус: </label>
         <Select labelId="demo-simple-select-label" id="demo-simple-select" value={status} label="Статус" onChange={Statuses} style={{width:"100px"}}>
           <MenuItem value={10}>Статус1</MenuItem>
@@ -87,4 +87,4 @@ function MyApplications(){
     );
 }
 
-export default MyApplications;
+export default AppInProgress;
