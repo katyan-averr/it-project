@@ -99,9 +99,11 @@ function App(){
                 </Button>
           </Grid>
           <Grid item xs={12} sm={6} md={4}>
+          <Link to="/createApplications">
               <Button variant='contained' style={{ width: "230px", height: "90px", backgroundColor:"#A4C8EC", background:"rgba(164, 200, 236, 0.75)" }}>
                   Другое
                 </Button>
+              </Link> 
           </Grid>
         </Grid>
       </Container>
