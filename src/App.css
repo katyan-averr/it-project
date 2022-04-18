@@ -33,8 +33,7 @@
 }
 
 li{
-  margin-left: 40px;
-  margin-top: 20px;
+  list-style-type: none;
 }
 
 .Menu{

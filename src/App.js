@@ -1,10 +1,15 @@
 import './App.css';
+import React, { useState } from "react";
 import Button from '@material-ui/core/Button';
 import { AppBar, Container, IconButton, Toolbar, Box, Paper, Grid } from '@material-ui/core';
 import { mergeClasses } from '@material-ui/styles';
 import MiscellaneousServicesIcon from '@mui/icons-material/MiscellaneousServices';
 import PersonIcon from '@mui/icons-material/Person';
 import {makeStyles} from '@material-ui/core/styles';
+import Routing from './Routing';
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import {SidebarPages} from "./SidebarData";
 
 const useStyles = makeStyles((theme) =>({
   root:{
@@ -35,6 +40,10 @@ const useStyles = makeStyles((theme) =>({
 function App(){
   const classes = useStyles();
 
+  const [sidebar, setSidebar] = useState(false);
+
+  const showSidebar = () => setSidebar(!sidebar);
+
   return(
     <>
 
@@ -43,9 +52,15 @@ function App(){
         <Toolbar>
             <MiscellaneousServicesIcon fontSize='large' style={{color: "black"}}/>
             <Button color="inherit" variant='contained' style={{marginLeft:"10px", marginRight:"10px", color: "black"}}>Каталог</Button>
-            <Button color="inherit" variant='outlined' style={{marginLeft:"10px", marginRight:"10px",color: "black"}}>Мои заявки</Button>
-            <Button color="inherit" variant='outlined' style={{marginLeft:"10px", marginRight:"10px", color: "black"}}>Биржа заявок</Button>
-            <Button color="inherit" variant='outlined' style={{marginLeft:"10px", marginRight:"10px", color: "black"}}>Выполняемые заявки</Button>      
+              <Link to="/myApplications">
+                <Button color="inherit" variant='outlined' style={{marginLeft:"10px", marginRight:"10px",color: "black"}} >Мои заявки</Button>
+              </Link>
+              <Link to="/appExchange">
+                <Button color="inherit" variant='outlined' style={{marginLeft:"10px", marginRight:"10px", color: "black"}}>Биржа заявок</Button>
+              </Link>
+              <Link to="/appInProgress">
+              <Button color="inherit" variant='outlined' style={{marginLeft:"10px", marginRight:"10px", color: "black"}}>Выполняемые заявки</Button> 
+              </Link>     
             <IconButton edge="start" color="inherit" aria-label='menu' style={{color: "black", marginLeft:"375px"}}>
               <PersonIcon fontSize='large'/>
             </IconButton>

@@ -4,6 +4,7 @@ import { AppBar, Container, IconButton, Toolbar, Box, Paper, Typography, MenuIte
 import MiscellaneousServicesIcon from '@mui/icons-material/MiscellaneousServices';
 import PersonIcon from '@mui/icons-material/Person';
 import {makeStyles} from '@material-ui/core/styles';
+import { Link } from "react-router-dom";
 import Select from '@material-ui/core/Select';
 import React from 'react';
 
@@ -53,10 +54,18 @@ function AppExchange(){
     <Container fixed>
         <Toolbar>
             <MiscellaneousServicesIcon fontSize='large' style={{color: "black"}}/>
-            <Button color="inherit" variant='outlined' style={{marginLeft:"10px", marginRight:"10px", color: "black"}}>Каталог</Button>
-            <Button color="inherit" variant='outlined' style={{marginLeft:"10px", marginRight:"10px",color: "black"}}>Мои заявки</Button>
-            <Button color="inherit" variant='contained' style={{marginLeft:"10px", marginRight:"10px", color: "black"}}>Биржа заявок</Button>
-            <Button color="inherit" variant='outlined' style={{marginLeft:"10px", marginRight:"10px", color: "black"}}>Выполняемые заявки</Button>      
+            <Link to="/">
+                <Button color="inherit" variant='outlined' style={{marginLeft:"10px", marginRight:"10px", color: "black"}}>Каталог</Button>
+              </Link>
+            <Link to="/myApplications">
+                <Button color="inherit" variant='outlined' style={{marginLeft:"10px", marginRight:"10px",color: "black"}} >Мои заявки</Button>
+              </Link>
+              <Link to="/appExchange">
+                <Button color="inherit" variant='contained' style={{marginLeft:"10px", marginRight:"10px", color: "black"}}>Биржа заявок</Button>
+              </Link>
+              <Link to="/appInProgress">
+              <Button color="inherit" variant='outlined' style={{marginLeft:"10px", marginRight:"10px", color: "black"}}>Выполняемые заявки</Button> 
+              </Link>      
             <IconButton edge="start" color="inherit" aria-label='menu' style={{color: "black", marginLeft:"375px"}}>
               <PersonIcon fontSize='large'/>
             </IconButton>
@@ -68,7 +77,7 @@ function AppExchange(){
 
       <Paper className={classes.mainFeaturesPost} style={{backgroundImage: "url(https://tradeforexblog.com/images/iqcent/1624320455263/original/how-to-contact-iqcent-support.jpg)"}}>
       <Container maxWidth="md" style={{position: "relative", top: "-230px", backgroundColor:"rgba(164, 200, 236, 0.75)"}}>
-        <Typography style={{color: "black", fontSize:"xx-large"}}>Бижа заявок</Typography>       
+        <Typography style={{color: "black", fontSize:"xx-large"}}>Биржа заявок</Typography>       
         <label>Дата: </label>
         <Select labelId="demo-simple-select-label" id="demo-simple-select" value={date} label="Статус" onChange={Dates} style={{width:"150px"}}>
           <MenuItem value={10}>Сначала старые</MenuItem>

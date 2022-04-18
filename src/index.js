@@ -9,11 +9,12 @@ import AppExchange from './AppExchange';
 import AppInProgress from './AppInProgress';
 import Authorization from './Authorization';
 import MyProfile from './MyProfile';
+import Routing from './Routing';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <MyProfile />
+    <Routing />
   </React.StrictMode>,
   document.getElementById('root')
 );
