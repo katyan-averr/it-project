@@ -60,7 +60,7 @@ function Authorization(){
     </AppBar>
     
     <main>
-        <Paper className={classes.mainFeaturesPost} style={{backgroundImage: "url(https://tradeforexblog.com/images/iqcent/1624320455263/original/how-to-contact-iqcent-support.jpg)"}}>
+    <div style={{marginTop:"40px",backgroundImage: "url(https://tradeforexblog.com/images/iqcent/1624320455263/original/how-to-contact-iqcent-support.jpg)", backgroundSize: 'cover', width: '100%', height: '90vh'}}>
             <Container maxWidth="md" style={{position: "relative", backgroundColor:"rgba(164, 200, 236, 0.75)", width:"440px", height:"220px"}}>
             <Typography style={{color: "black", fontSize:"xx-large", marginLeft:"90px"}}>Авторизация</Typography>
                 <div>
@@ -71,7 +71,7 @@ function Authorization(){
                 </div>
                 <Button color="4c7bd9" variant='contained' style={{marginLeft:"150px", marginTop:"10px"}}>Войти</Button>  
             </Container>
-        </Paper>
+        </div>
     </main>
     </>
     );

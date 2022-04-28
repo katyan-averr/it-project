@@ -9,6 +9,8 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import ButtonBase from '@mui/material/ButtonBase';
 import { styled } from '@mui/material/styles';
+import { useState } from "react";
+import { ClickAwayListener, Grow, Popper, MenuList, MenuItem} from '@material-ui/core';
 
 const Img = styled('img')({
     margin: 'auto',
@@ -57,6 +59,39 @@ function MyProfile(){
     const Specificallys = (event) => {
       setSpecifically(event.target.value);
     };
+
+    const [open, setOpen] = React.useState(false);
+  const anchorRef = React.useRef(null);
+
+  const handleToggle = () => {
+    setOpen((prevOpen) => !prevOpen);
+  };
+
+  const handleClose = (event) => {
+    if (anchorRef.current && anchorRef.current.contains(event.target)) {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+  function handleListKeyDown(event) {
+    if (event.key === 'Tab') {
+      event.preventDefault();
+      setOpen(false);
+    } else if (event.key === 'Escape') {
+      setOpen(false);
+    }
+  }
+  const prevOpen = React.useRef(open);
+  React.useEffect(() => {
+    if (prevOpen.current === true && open === false) {
+      anchorRef.current.focus();
+    }
+
+    prevOpen.current = open;
+  }, [open]);
+
   
     return(
       <>
@@ -76,16 +111,58 @@ function MyProfile(){
               <Link to="/appInProgress">
               <Button color="inherit" variant='outlined' style={{marginLeft:"10px", marginRight:"10px", color: "black"}}>Выполняемые заявки</Button> 
               </Link>     
-            <IconButton edge="start" color="inherit" aria-label='menu' style={{color: "black", marginLeft:"375px"}}>
-              <PersonIcon fontSize='large'/>
-            </IconButton>
+              <IconButton
+          ref={anchorRef}
+          id="composition-button"
+          aria-controls={open ? 'composition-menu' : undefined}
+          aria-expanded={open ? 'true' : undefined}
+          aria-haspopup="true"
+          onClick={handleToggle}
+          edge="start" color="inherit" aria-label='menu' style={{color: "black", marginLeft:"375px"}}
+        >
+          <PersonIcon fontSize='large'/>
+        </IconButton>
+        <Popper
+          open={open}
+          anchorEl={anchorRef.current}
+          role={undefined}
+          placement="bottom-start"
+          transition
+          disablePortal
+        >
+          {({ TransitionProps, placement }) => (
+            <Grow
+              {...TransitionProps}
+              style={{
+                transformOrigin:
+                  placement === 'bottom-start' ? 'left top' : 'left bottom',
+              }}
+            >
+              <Paper style={{backgroundColor:"#A4C8EC"}}>
+                <ClickAwayListener onClickAway={handleClose}>
+                  <MenuList
+                    autoFocusItem={open}
+                    id="composition-menu"
+                    aria-labelledby="composition-button"
+                    onKeyDown={handleListKeyDown}
+                  >
+                    <Link to="/myProfile">
+                    <MenuItem onClick={handleClose}>Мой аккаунт</MenuItem>
+                    </Link>
+                    <MenuItem onClick={handleClose}>Выйти</MenuItem>
+                  </MenuList>
+                </ClickAwayListener>
+              </Paper>
+            </Grow>
+          )}
+        </Popper>
         </Toolbar>
       </Container>
       </AppBar>
       
       <main>
-        <Paper className={classes.mainFeaturesPost} style={{backgroundImage: "url(https://tradeforexblog.com/images/iqcent/1624320455263/original/how-to-contact-iqcent-support.jpg)"}}>
-        <Container maxWidth="md" style={{position: "relative", backgroundColor:"rgba(164, 200, 236, 0.75)", width:"880px"}}>
+      <div style={{backgroundImage: "url(https://tradeforexblog.com/images/iqcent/1624320455263/original/how-to-contact-iqcent-support.jpg)", backgroundSize: 'cover', width: '100%', height: '90vh'}}>
+        <Container maxWidth="md" style={{top:"70px", position: "relative", backgroundColor:"rgba(164, 200, 236, 0.75)", width:"880px"}}>
         <Grid container spacing={2}>
             <Grid item xs={5}>
             <Typography style={{color: "black", fontSize:"xx-large"}}>Личный кабинет</Typography>
@@ -107,7 +184,7 @@ function MyProfile(){
             </Grid>
         </Grid> 
         </Container>   
-        </Paper>
+        </div>
       </main>
       </>
       );

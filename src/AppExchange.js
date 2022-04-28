@@ -7,6 +7,8 @@ import {makeStyles} from '@material-ui/core/styles';
 import { Link } from "react-router-dom";
 import Select from '@material-ui/core/Select';
 import React from 'react';
+import { useState } from "react";
+import { ClickAwayListener, Grow, Popper, MenuList} from '@material-ui/core';
 
 const useStyles = makeStyles((theme) =>({
   root:{
@@ -48,6 +50,42 @@ function AppExchange(){
     setDate(event.target.value);
   };
 
+  const [sidebar, setSidebar] = useState(false);
+
+  const showSidebar = () => setSidebar(!sidebar);
+
+  const [open, setOpen] = React.useState(false);
+  const anchorRef = React.useRef(null);
+
+  const handleToggle = () => {
+    setOpen((prevOpen) => !prevOpen);
+  };
+
+  const handleClose = (event) => {
+    if (anchorRef.current && anchorRef.current.contains(event.target)) {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+  function handleListKeyDown(event) {
+    if (event.key === 'Tab') {
+      event.preventDefault();
+      setOpen(false);
+    } else if (event.key === 'Escape') {
+      setOpen(false);
+    }
+  }
+  const prevOpen = React.useRef(open);
+  React.useEffect(() => {
+    if (prevOpen.current === true && open === false) {
+      anchorRef.current.focus();
+    }
+
+    prevOpen.current = open;
+  }, [open]);
+
   return(
     <>
     <AppBar position="static" style={{backgroundColor:"#A4C8EC", background:"rgba(164, 200, 236, 0.75)" }}>
@@ -66,17 +104,60 @@ function AppExchange(){
               <Link to="/appInProgress">
               <Button color="inherit" variant='outlined' style={{marginLeft:"10px", marginRight:"10px", color: "black"}}>Выполняемые заявки</Button> 
               </Link>      
-            <IconButton edge="start" color="inherit" aria-label='menu' style={{color: "black", marginLeft:"375px"}}>
-              <PersonIcon fontSize='large'/>
-            </IconButton>
+              <IconButton
+          ref={anchorRef}
+          id="composition-button"
+          aria-controls={open ? 'composition-menu' : undefined}
+          aria-expanded={open ? 'true' : undefined}
+          aria-haspopup="true"
+          onClick={handleToggle}
+          edge="start" color="inherit" aria-label='menu' style={{color: "black", marginLeft:"375px"}}
+        >
+          <PersonIcon fontSize='large'/>
+        </IconButton>
+        <Popper
+          open={open}
+          anchorEl={anchorRef.current}
+          role={undefined}
+          placement="bottom-start"
+          transition
+          disablePortal
+        >
+          {({ TransitionProps, placement }) => (
+            <Grow
+              {...TransitionProps}
+              style={{
+                transformOrigin:
+                  placement === 'bottom-start' ? 'left top' : 'left bottom',
+              }}
+            >
+              <Paper style={{backgroundColor:"#A4C8EC"}}>
+                <ClickAwayListener onClickAway={handleClose}>
+                  <MenuList
+                    autoFocusItem={open}
+                    id="composition-menu"
+                    aria-labelledby="composition-button"
+                    onKeyDown={handleListKeyDown}
+                  >
+                    <Link to="/myProfile">
+                    <MenuItem onClick={handleClose}>Мой аккаунт</MenuItem>
+                    </Link>
+                    <MenuItem onClick={handleClose}>Выйти</MenuItem>
+                  </MenuList>
+                </ClickAwayListener>
+              </Paper>
+            </Grow>
+          )}
+        </Popper>
         </Toolbar>
       </Container>
     </AppBar>
     
     <main>
 
-      <Paper className={classes.mainFeaturesPost} style={{backgroundImage: "url(https://tradeforexblog.com/images/iqcent/1624320455263/original/how-to-contact-iqcent-support.jpg)"}}>
-      <Container maxWidth="md" style={{position: "relative", top: "-230px", backgroundColor:"rgba(164, 200, 236, 0.75)"}}>
+    <div style={{backgroundImage: "url(https://tradeforexblog.com/images/iqcent/1624320455263/original/how-to-contact-iqcent-support.jpg)", backgroundSize: 'cover', width: '100%', height: '90vh'}}>
+      {/* <Paper className={classes.mainFeaturesPost} style={{backgroundImage: "url(https://tradeforexblog.com/images/iqcent/1624320455263/original/how-to-contact-iqcent-support.jpg)"}}> */}
+      <Container maxWidth="md" style={{position: "relative", top: "70px", backgroundColor:"rgba(164, 200, 236, 0.75)"}}>
         <Typography style={{color: "black", fontSize:"xx-large"}}>Биржа заявок</Typography>       
         <label>Дата: </label>
         <Select labelId="demo-simple-select-label" id="demo-simple-select" value={date} label="Статус" onChange={Dates} style={{width:"150px"}}>
@@ -84,7 +165,8 @@ function AppExchange(){
           <MenuItem value={20}>Сначала новые</MenuItem>
         </Select>
       </Container>
-      </Paper>
+      {/* </Paper> */}
+      </div>
     </main>
     </>
     );
