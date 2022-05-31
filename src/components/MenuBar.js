@@ -1,58 +1,13 @@
-import './App.css';
 import Button from '@material-ui/core/Button';
-import { AppBar, Container, IconButton, Toolbar, Box, Paper, Typography, MenuItem } from '@material-ui/core';
+import { AppBar, Container, IconButton, Toolbar, Box, Paper, Grid, Typography } from '@material-ui/core';
 import MiscellaneousServicesIcon from '@mui/icons-material/MiscellaneousServices';
 import PersonIcon from '@mui/icons-material/Person';
-import {makeStyles} from '@material-ui/core/styles';
-import { Link } from "react-router-dom";
-import Select from '@material-ui/core/Select';
 import React from 'react';
-import { useState } from "react";
-import { ClickAwayListener, Grow, Popper, MenuList} from '@material-ui/core';
-
-const useStyles = makeStyles((theme) =>({
-  root:{
-    flexGrow:1
-  },
-  menuButton:{
-    marginRight: theme.spacing(1)
-  },
-  title:{
-    flexGrow:1
-  },
-  mainFeaturesPost:{
-    position: "relative",
-    marginBottom: theme.spacing(4),
-    backgroundSize:"cover",
-    backgroundRepeat:"no-repeat",
-    backgroundPosition: "center",
-    padding: theme.spacing(35)
-  },
-  mainFeaturesPostContent:{
-    position: "relative",
-    padding: theme.spacing(34)
-  }
-}))
+import { Link } from "react-router-dom";
+import { ClickAwayListener, Grow, Popper, MenuList, MenuItem} from '@material-ui/core';
 
 
-function AppExchange(){
-  const classes = useStyles();
-
-  const [status, setStatus] = React.useState('');
-
-  const Statuses = (event) => {
-    setStatus(event.target.value);
-  };
-
-  const [date, setDate] = React.useState('');
-
-  const Dates = (event) => {
-    setDate(event.target.value);
-  };
-
-  const [sidebar, setSidebar] = useState(false);
-
-  const showSidebar = () => setSidebar(!sidebar);
+function MenuBar(){
 
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
@@ -86,10 +41,11 @@ function AppExchange(){
     prevOpen.current = open;
   }, [open]);
 
-  return(
-    <>
-    <AppBar position="static" style={{backgroundColor:"#A4C8EC", background:"rgba(164, 200, 236, 0.75)" }}>
-    <Container fixed>
+  
+    return(
+      <>
+      <AppBar position="static" style={{backgroundColor:"#A4C8EC", background:"rgba(164, 200, 236, 0.75)" }}>
+      <Container fixed>
         <Toolbar>
             <MiscellaneousServicesIcon fontSize='large' style={{color: "black"}}/>
             <Link to="/">
@@ -99,11 +55,11 @@ function AppExchange(){
                 <Button color="inherit" variant='outlined' style={{marginLeft:"10px", marginRight:"10px",color: "black"}} >Мои заявки</Button>
               </Link>
               <Link to="/appExchange">
-                <Button color="inherit" variant='contained' style={{marginLeft:"10px", marginRight:"10px", color: "black"}}>Биржа заявок</Button>
+                <Button color="inherit" variant='outlined' style={{marginLeft:"10px", marginRight:"10px", color: "black"}}>Биржа заявок</Button>
               </Link>
               <Link to="/appInProgress">
               <Button color="inherit" variant='outlined' style={{marginLeft:"10px", marginRight:"10px", color: "black"}}>Выполняемые заявки</Button> 
-              </Link>      
+              </Link>     
               <IconButton
           ref={anchorRef}
           id="composition-button"
@@ -151,25 +107,9 @@ function AppExchange(){
         </Popper>
         </Toolbar>
       </Container>
-    </AppBar>
-    
-    <main>
+      </AppBar>
+      </>
+      );
+  }
 
-    <div style={{backgroundImage: "url(https://tradeforexblog.com/images/iqcent/1624320455263/original/how-to-contact-iqcent-support.jpg)", backgroundSize: 'cover', width: '100%', height: '90vh'}}>
-      {/* <Paper className={classes.mainFeaturesPost} style={{backgroundImage: "url(https://tradeforexblog.com/images/iqcent/1624320455263/original/how-to-contact-iqcent-support.jpg)"}}> */}
-      <Container maxWidth="md" style={{position: "relative", top: "70px", backgroundColor:"rgba(164, 200, 236, 0.75)"}}>
-        <Typography style={{color: "black", fontSize:"xx-large"}}>Биржа заявок</Typography>       
-        <label>Дата: </label>
-        <Select labelId="demo-simple-select-label" id="demo-simple-select" value={date} label="Статус" onChange={Dates} style={{width:"150px"}}>
-          <MenuItem value={10}>Сначала старые</MenuItem>
-          <MenuItem value={20}>Сначала новые</MenuItem>
-        </Select>
-      </Container>
-      {/* </Paper> */}
-      </div>
-    </main>
-    </>
-    );
-}
-
-export default AppExchange;
+export default MenuBar;

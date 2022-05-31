@@ -2,20 +2,20 @@ import './App.css';
 // import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import App from './App';
-import MyApplications from './MyApplications';
-import CreateApplications from './CreateApplications';
-import AppInExchange from './AppInExchange';
-import AppExchange from './AppExchange';
-import AppInProgress from './AppInProgress';
-import Authorization from './Authorization';
-import MyProfile from './MyProfile';
+import HomePage from './pages/HomePage';
+import MyApplications from './pages/MyApplications';
+import CreateApplications from './pages/CreateApplications';
+import AppInExchange from './pages/AppInExchange';
+import AppExchange from './pages/AppExchange';
+import AppInProgress from './pages/AppInProgress';
+import Authorization from './pages/Authorization';
+import MyProfile from './pages/MyProfile';
 
 function Routing() {
   return (
         <BrowserRouter>
             <Routes>
-              <Route path='/'  element={<App />} />
+              <Route path='/'  element={<HomePage />} />
               <Route path='/appExchange' element={<AppExchange/>} />
               <Route path='/appInExchange' element={<AppInExchange/>} />
               <Route path='/appInProgress' element={<AppInProgress/>} />
